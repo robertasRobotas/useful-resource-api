@@ -6,10 +6,11 @@ import {
   UPDATE_RESOURCE,
   DELETE_RESOURCE_BY_ID,
 } from "../controllers/resource.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/resources", GET_ALL_RESOURCES);
+router.get("/resources", auth, GET_ALL_RESOURCES);
 
 router.get("/resources/:id", GET_RESOURCE_BY_ID);
 
