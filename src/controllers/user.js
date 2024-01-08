@@ -20,7 +20,7 @@ const SIGN_UP = async (req, res) => {
       .json({ message: "User was created", user: response });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -52,7 +52,7 @@ const LOGIN = async (req, res) => {
     return res.status(200).json({ jwt: token });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 

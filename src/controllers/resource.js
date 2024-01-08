@@ -6,7 +6,7 @@ const GET_ALL_RESOURCES = async (req, res) => {
     return res.status(200).json({ resources: resources });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -16,7 +16,17 @@ const GET_RESOURCE_BY_ID = async (req, res) => {
     return res.status(200).json({ resource: resource });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
+  }
+};
+
+const GET_ALL_RESOURCES_BY_USER_ID = async (req, res) => {
+  try {
+    const resource = await ResourceModel.find({ userId: req.body.userId });
+    return res.status(200).json({ resource: resource });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -27,6 +37,7 @@ const INSERT_RESOURCE = async (req, res) => {
       description: req.body.description,
       category: req.body.category,
       content_link: req.body.content_link,
+      userId: req.body.userId,
     });
 
     const response = await resource.save();
@@ -36,7 +47,7 @@ const INSERT_RESOURCE = async (req, res) => {
       .json({ message: "Resource was added", response: response });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -51,7 +62,7 @@ const UPDATE_RESOURCE = async (req, res) => {
     return res.status(200).json({ resource: resource });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -61,7 +72,7 @@ const DELETE_RESOURCE_BY_ID = async (req, res) => {
     return res.status(200).json({ resource: resource });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ resources: "something wnt wrong" });
+    return res.status(500).json({ message: "something went wrong" });
   }
 };
 
@@ -71,4 +82,5 @@ export {
   INSERT_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE_BY_ID,
+  GET_ALL_RESOURCES_BY_USER_ID,
 };

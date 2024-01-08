@@ -12,7 +12,7 @@ const authUser = (req, res, next) => {
       return res.status(401).json({ message: "user is not authenticated" });
     }
 
-    //req.body.userId = decoded.id;
+    req.body.userId = decoded.id;
 
     return next();
   });

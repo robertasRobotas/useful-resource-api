@@ -5,6 +5,7 @@ const resourceSchema = mongoose.Schema({
   description: { type: String, required: true, min: 3 },
   category: { type: String, required: true, min: 3 },
   content_link: { type: String, required: true, min: 3 },
+  userId: { type: String, required: true, min: 3 },
 });
 
 export default mongoose.model("Resource", resourceSchema);
